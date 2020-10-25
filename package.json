@@ -11,9 +11,11 @@
     "api:build": "tsc -p tsconfig.api.json",
     "api:start": "node dist/api.js",
     "build": "npm run api:build",
+    "dev": "run-p mongod:start api:start",
     "fix:lint": "eslint src --ext .ts --fix",
     "mongod:start": "ts-node -e \"require('./src/scripts/start-mongod.ts').startMongod()\"",
     "postinstall": "",
+    "start": "npm run api:start",
     "test": "jest"
   },
   "dependencies": {
