@@ -38,7 +38,7 @@ export class BookServiceMongo extends MongoService implements BookService {
     else throw new Error('book.not_found');
   }
 
-  async getBook(_id: string): Promise<Book> {
+  async getBook(_id: string): Promise<Book | null> {
     const collection = await this.ensureBookCollection();
     return await collection.findOne({ _id });
   }

@@ -6,3 +6,7 @@ export function getMongodbConfig() {
     dbName: process.env.MONGODB_DATABASE || 'books',
   };
 }
+
+export function getAppPort() {
+  return 4000;
+}

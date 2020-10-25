@@ -1,15 +1,15 @@
 {
   "extends": "./tsconfig",
   "compilerOptions": {
-    "sourceMap": false,
+    "sourceMap": true,
     "types": ["node", "jest"],
-    "strictNullChecks": false
+    "outDir": "./dist"
   },
   "include": [
-    "test/**/*.spec.ts",
-    "test/**/*.test.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
     "**/node_modules"
-  ]
+  ],
+
 }
