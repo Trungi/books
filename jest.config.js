@@ -9,7 +9,7 @@ module.exports = {
     "^.+\\.ts$": "ts-jest"
   },
   testMatch: [
-    "<rootDir>/test/**/(*.)(spec).ts"
+    "<rootDir>/**/*.spec.ts"
   ],
   moduleFileExtensions: [
     "ts",
