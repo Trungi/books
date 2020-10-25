@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "declaration": true,
+    "importHelpers": true,
+    "sourceMap": false,
+    "listFiles": false,
+    "strictNullChecks": true,
+    "traceResolution": false,
+    "pretty": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib" : [
+      "es2017", "dom"
+    ],
+    "types" : [
+      "node", "jest"
+    ]
+  },
+  "exclude": [
+    "**/node_modules",
+    "**/*.spec.ts"
+  ],
+  "compileOnSave": false
+}
