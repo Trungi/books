@@ -2,8 +2,7 @@
   "extends": "./tsconfig",
   "compilerOptions": {
     "sourceMap": false,
-    "types": ["node", "jest"],
-    "strictNullChecks": false
+    "types": ["node", "jest"]
   },
   "include": [
     "test/**/*.spec.ts",

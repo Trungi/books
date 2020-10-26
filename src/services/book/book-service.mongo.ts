@@ -1,4 +1,4 @@
-import { Collection, ObjectId } from 'mongodb';
+import { Collection, ObjectID, ObjectId } from 'mongodb';
 
 import { Book } from '../../types/book.types';
 import { MongoService } from '../../utils/mongo-service';
@@ -41,8 +41,7 @@ export class BookServiceMongo extends MongoService implements BookService {
 
   async getBook(_id: string): Promise<Book | null> {
     const collection = await this.ensureBookCollection();
-    // @ts-ignore 
-    const result = await collection.findOne({ _id: ObjectId(_id) });
+    const result = await collection.findOne({ _id });
     return fixMongodbIds(result);
   }
 

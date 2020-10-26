@@ -36,7 +36,7 @@ paths:
       parameters:
         - name: id
           in: path
-          description: ID of book
+          description: ID of the book
           required: true
           schema:
             type: string
@@ -52,7 +52,7 @@ paths:
       parameters:
         - name: id
           in: path
-          description: ID of book
+          description: ID of the book
           required: true
           schema:
             type: string
@@ -75,7 +75,7 @@ paths:
       parameters:
         - name: id
           in: path
-          description: ID of book to get
+          description: ID of the book
           required: true
           schema:
             type: string
