@@ -38,6 +38,9 @@ const apiRouter = express.Router();
 apiRouter.use('/book', bookRouter)
 app.use('/api', apiRouter);
 
+app.get('/', (req, res) => res.redirect('/docs'));
+
+
 // start api
 const appPort = getAppPort();
 app.listen(appPort, () => {
