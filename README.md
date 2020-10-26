@@ -37,3 +37,8 @@ Startup:
 $ npm run start
 ```
 
+## What can be improved / next steps
+- Sice API is now mapped 1to1 to book.service which might not always be the case, it would be good to separate unit and integrations tests
+- Use tslint and/or prettier
+- Setup dependency injection for services
+- Typescript types can be generated from openapi schema
