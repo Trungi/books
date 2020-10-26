@@ -1,6 +1,4 @@
 import { Router } from 'express';
-import * as OpenApiValidator from 'express-openapi-validator';
-import * as path from 'path';
 
 import { BookService } from './services/book';
 import { StatusCodes } from 'http-status-codes';
