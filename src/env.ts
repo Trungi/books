@@ -8,5 +8,5 @@ export function getMongodbConfig() {
 }
 
 export function getAppPort() {
-  return 4000;
+  return process.env.PORT || 4000;
 }

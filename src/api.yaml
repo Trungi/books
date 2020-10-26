@@ -1,0 +1,116 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Books API
+paths:
+  /api/book/:
+    get:
+      description: List books
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    post:
+      description: Create a book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+  /api/book/{id}:
+    get:
+      description: Get a book
+      parameters:
+        - name: id
+          in: path
+          description: ID of book
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+    post:
+      description: Update a book
+      parameters:
+        - name: id
+          in: path
+          description: ID of book
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Book
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookUpdateRequest'
+    delete:
+      description: Delete a book by id
+      parameters:
+        - name: id
+          in: path
+          description: ID of book to get
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: book deleted
+
+components:
+  schemas:
+    Book:
+      required:
+        - title
+        - description
+        - authors
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        authors:
+          type: array
+          items:
+            type: string
+
+    BookUpdateRequest:
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        authors:
+          type: array
+          items:
+            type: string
