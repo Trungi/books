@@ -10,8 +10,10 @@ Used tools:
   - Github Actions - automatically runs build and test for CI
   - Heroku + Mongodb atlas for CD
   
-## Deployment
-Main branch of this app is automatically deployed to http://trungi-books.herokuapp.com/
+## CI/CD
+- All tests are automatically run using Github Actions
+- Main branch of this app is automatically deployed to http://trungi-books.herokuapp.com/ (it may take ~20s for cold startup since I'm using a free dyno). MongoDB database is provided in MongoDB Atlas.
+- You can browse this API in swagger docs: http://trungi-books.herokuapp.com/docs
   
 ## Installation
 ```sh
@@ -21,10 +23,10 @@ $ npm install
 ```
 ## How to run
 ### Dev server:
-Dev server automatically starts mongodb instance in localhost
 ```sh
 $ npm run dev
 ```
+This command automatically starts local mongodb instance with expressjs server running on port 4000 (or any other port specified by process.env.PORT)
 
 ### Deploy:
 ```sh
@@ -38,7 +40,8 @@ $ npm run start
 ```
 
 ## What can be improved / next steps
-- Sice API is now mapped 1to1 to book.service which might not always be the case, it would be good to separate unit and integrations tests
+- Better test support (right now there are only integration tests, we need some unit tests for services when app becomes larger)
+- Add auth, preferably using JWT via Auth0 or AWS Cognito or issue custom JWT tokens
 - Use tslint and/or prettier
 - Setup dependency injection for services
 - Typescript types can be generated from openapi schema
