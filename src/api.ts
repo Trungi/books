@@ -41,9 +41,8 @@ export function getApiBooksRouter(bookService: BookService) {
   const router = Router();
 
   router.get('/', async (req, res) => {
-    const skip = !!req.params.skip ? parseInt(req.params.skip, 10) : 0;
-    const limit = !!req.params.limit ? parseInt(req.params.limit, 10) : 25;
-    
+    const skip = req.query.skip as any as number || 0;
+    const limit = req.query.limit as any as number || 25;
     const list = await bookService.listBooks({ skip, limit });
     return res.json(list);
   });

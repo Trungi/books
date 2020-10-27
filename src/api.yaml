@@ -6,6 +6,18 @@ paths:
   /api/book/:
     get:
       description: List books
+      parameters:
+        - in: query
+          name: skip
+          schema:
+            type: integer
+          description: The number of items to skip before starting to collect the result set
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of items to return
+
       responses:
         '200':
           description: OK
