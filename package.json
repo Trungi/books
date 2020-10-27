@@ -17,7 +17,7 @@
     "mongod:start": "ts-node -e \"require('./src/scripts/start-mongod.ts').startMongod()\"",
     "postinstall": "",
     "start": "npm run server:start",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --no-cache  --detectOpenHandles --runInBand --forceExit"
   },
   "dependencies": {
     "@types/supertest": "^2.0.10",

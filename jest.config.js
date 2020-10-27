@@ -39,5 +39,5 @@ module.exports = {
     "lcovonly",
     "html"
   ],
-  testTimeout: 60000
+  testTimeout: 15000
 };
