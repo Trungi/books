@@ -49,7 +49,7 @@ export function getApiBooksRouter(bookService: BookService) {
   });
 
   router.post('/', async (req, res) => {
-    const book: Omit<Book, '_id'> = req.body;
+    const book: Omit<Book, 'id'> = req.body;
     const createResult = await bookService.createBook(book);
     return res.json(createResult);
   });
@@ -78,7 +78,7 @@ export function getApiBooksRouter(bookService: BookService) {
       return;
     }
 
-    const book: Partial<Omit<Book, '_id'>> = req.body;
+    const book: Partial<Omit<Book, 'id'>> = req.body;
     const updateResult = await bookService.updateBook(req.params.bookId, book);
     return res.json(updateResult);
   });

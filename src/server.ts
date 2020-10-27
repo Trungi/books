@@ -14,5 +14,4 @@ const api = createApi(bookService);
 const appPort = getAppPort();
 api.listen(appPort, () => {
   console.log(`Server is listening on ${appPort}`);
-  console.log(api.routes);
 });

@@ -45,7 +45,7 @@ test('List books', async (done) => {
 test('Get a book', async (done) => {
   const book = bookFixtures[0];
 
-  const response = await request(api).get(`/api/book/${book._id}`);
+  const response = await request(api).get(`/api/book/${book.id}`);
   expect(response.status).toBe(StatusCodes.OK);
   expect(response.body).toMatchObject(book);
 
@@ -63,10 +63,10 @@ test('Get nonexisting book', async (done) => {
 test('Delete a book', async (done) => {
   const book = bookFixtures[0];
   
-  const deleteResponse = await request(api).delete(`/api/book/${book._id}`);
+  const deleteResponse = await request(api).delete(`/api/book/${book.id}`);
   expect(deleteResponse.status).toBe(StatusCodes.NO_CONTENT);
 
-  const retryResponse = await request(api).get(`/api/book/${book._id}`);
+  const retryResponse = await request(api).get(`/api/book/${book.id}`);
   expect(retryResponse.status).toBe(StatusCodes.NOT_FOUND);
 
   done();
@@ -85,7 +85,7 @@ test('Update a book', async (done) => {
   const book = bookFixtures[0];
   const title = 'New Book Title';
   
-  const updateResponse = await request(api).put(`/api/book/${book._id}`).send({ title });
+  const updateResponse = await request(api).put(`/api/book/${book.id}`).send({ title });
   expect(updateResponse.status).toBe(StatusCodes.OK);
   expect(updateResponse.body).toMatchObject({ ...book, title });
 
@@ -106,7 +106,7 @@ test('Update incorrect field in a book', async (done) => {
   const book = bookFixtures[0];
   const incorrectField = 'Wrong Field';
   
-  const updateResponse = await request(api).put(`/api/book/${book._id}`, { incorrectField });
+  const updateResponse = await request(api).put(`/api/book/${book.id}`, { incorrectField });
   expect(updateResponse.status).toBe(StatusCodes.UNSUPPORTED_MEDIA_TYPE);
 
   done();

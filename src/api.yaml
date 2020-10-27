@@ -91,7 +91,7 @@ components:
         - description
         - authors
       properties:
-        _id:
+        id:
           type: string
         title:
           type: string

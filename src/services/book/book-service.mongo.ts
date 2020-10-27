@@ -1,6 +1,7 @@
-import { Collection } from 'mongodb';
+import { Collection, ObjectId } from 'mongodb';
+import { v4 } from 'uuid';
 
-import { Book } from '../../types/book.types';
+import { Book, BookCreateRequest, BookUpdateRequest } from '../../types/book.types';
 import { MongoService } from '../../utils/mongo-service';
 import { BookService, ListBookOpts } from './book-service';
 
@@ -17,48 +18,54 @@ export class BookServiceMongo extends MongoService implements BookService {
     return this.ensureCollection(BookServiceMongo.collectionName);
   }
 
-  async createBook(book: Omit<Book, '_id'>): Promise<Book> {
+  async createBook(book: BookCreateRequest): Promise<Book> {
     const collection = await this.ensureBookCollection();
-    if (book['_id']) delete book['_id'];
-    const result = await collection.insertOne(book as Book);
-    return fixMongodbIds(result.ops[0]);
+    const result = await collection.insertOne({
+      ...book,
+      id: v4(),
+    });
+    return removeMongoIds(result.ops[0]);
   }
 
-  async updateBook(_id: string, book: Partial<Omit<Book, '_id'>>): Promise<Book> {
+  async updateBook(id: string, book: BookUpdateRequest): Promise<Book> {
     const collection = await this.ensureBookCollection();
-    if (book['_id']) delete book['_id'];
+    if (book['id']) delete book['id'];
 
     const result = await collection.findOneAndUpdate(
-      { _id },
+      { id },
       { $set: book },
       { returnOriginal: false, upsert: false }
     );
 
-    if (result.value) return fixMongodbIds(result.value);
+    if (result.value) return removeMongoIds(result.value);
     else throw new Error('book.not_found');
   }
 
-  async getBook(_id: string): Promise<Book | null> {
+  async getBook(id: string): Promise<Book | null> {
     const collection = await this.ensureBookCollection();
-    const result = await collection.findOne({ _id });
-    return fixMongodbIds(result);
+    const result = await collection.findOne({ id } as any);
+    return removeMongoIds(result);
   }
 
-  async deleteBook(_id: string): Promise<boolean> {
+  async deleteBook(id: string): Promise<boolean> {
     const collection = await this.ensureBookCollection();
-    const result = await collection.deleteOne({ _id } as any);
+    const result = await collection.deleteOne({ id } as any);
     return result.deletedCount === 1;
   }
 
   async listBooks(opts: ListBookOpts): Promise<Book[]> {
     const collection = await this.ensureBookCollection();
     const results = await collection.find({}, { skip: opts.skip, limit: opts.limit }).toArray();
-    return fixMongodbIds(results);
+    return removeMongoIds(results);
   }
 }
 
-function fixMongodbIds(items: Book | Book[] | null) {
+// A bit hacky but I try to avoid having to use ObjectId with native mongodb client
+function removeMongoIds(items: Book | Book[] | null) {
   if (!items) return items;
-  if (Array.isArray(items)) return items.map(i => fixMongodbIds(i));
-  else return { ...items, _id: items._id.toString() };
+  if (Array.isArray(items)) return items.map(i => removeMongoIds(i));
+  else {
+    delete items['_id'];
+    return items;
+  }
 }

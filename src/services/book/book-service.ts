@@ -1,15 +1,15 @@
-import { Book } from '../../types/book.types';
+import { Book, BookCreateRequest, BookUpdateRequest } from '../../types/book.types';
 
 
 export interface BookService {
   
-  createBook(book: Omit<Book, '_id'>): Promise<Book>;
+  createBook(book: BookCreateRequest): Promise<Book>;
 
-  updateBook(_id: string, book: Partial<Omit<Book, '_id'>>): Promise<Book>;
+  updateBook(id: string, book: BookUpdateRequest): Promise<Book>;
 
-  getBook(_id: string): Promise<Book | null>;
+  getBook(id: string): Promise<Book | null>;
 
-  deleteBook(_id: string): Promise<boolean>;
+  deleteBook(id: string): Promise<boolean>;
 
   listBooks(opts?: ListBookOpts): Promise<Book[]>;
 }

@@ -1,8 +1,10 @@
 
-
 export type Book = {
-  _id: string,
+  id: string,
   title: string,
   description: string,
   authors: string[],
 };
+
+export type BookCreateRequest = Omit<Book, 'id'>;
+export type BookUpdateRequest = Partial<BookCreateRequest>;
