@@ -5,8 +5,8 @@ import * as bodyParser from 'body-parser';
 import * as yamljs from 'yamljs';
 import * as swaggerUi from 'swagger-ui-express';
 import { Router } from 'express';
-
 import { StatusCodes } from 'http-status-codes';
+
 import { Book } from './types/book.types';
 
 import { BookService } from './services/book';
