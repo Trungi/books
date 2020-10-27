@@ -1,6 +1,7 @@
 import { Db } from 'mongodb';
 const request = require('supertest');
 import express from 'express';
+import * as clone from 'lodash.clonedeep';
 
 import { createApi } from '../../src/api';
 import { MongoMemoryServer } from 'mongodb-memory-server';
@@ -28,7 +29,7 @@ afterAll(async () => {
 
 beforeEach(async () => {
   await db.createCollection(BookServiceMongo.collectionName);
-  await db.collection(BookServiceMongo.collectionName).insertMany(bookFixtures);
+  await db.collection(BookServiceMongo.collectionName).insertMany(clone(bookFixtures));
 });
 
 afterEach(async () => {
