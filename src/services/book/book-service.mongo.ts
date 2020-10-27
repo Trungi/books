@@ -1,4 +1,4 @@
-import { Collection, ObjectID, ObjectId } from 'mongodb';
+import { Collection } from 'mongodb';
 
 import { Book } from '../../types/book.types';
 import { MongoService } from '../../utils/mongo-service';
@@ -29,8 +29,7 @@ export class BookServiceMongo extends MongoService implements BookService {
     if (book['_id']) delete book['_id'];
 
     const result = await collection.findOneAndUpdate(
-      // @ts-ignore
-      { _id: ObjectId(_id) },
+      { _id },
       { $set: book },
       { returnOriginal: false, upsert: false }
     );
@@ -47,8 +46,7 @@ export class BookServiceMongo extends MongoService implements BookService {
 
   async deleteBook(_id: string): Promise<boolean> {
     const collection = await this.ensureBookCollection();
-    // @ts-ignore
-    const result = await collection.deleteOne({ _id: ObjectId(_id) });
+    const result = await collection.deleteOne({ _id } as any);
     return result.deletedCount === 1;
   }
 

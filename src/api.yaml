@@ -22,7 +22,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Book'
+              $ref: '#/components/schemas/BookCreateRequest'
       responses:
         '200':
           description: OK
@@ -47,7 +47,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Book'
-    post:
+    put:
       description: Update a book
       parameters:
         - name: id
@@ -62,14 +62,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Book'
+              $ref: '#/components/schemas/BookUpdateRequest'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BookUpdateRequest'
+                $ref: '#/components/schemas/Book'
     delete:
       description: Delete a book by id
       parameters:
@@ -101,11 +101,10 @@ components:
           type: array
           items:
             type: string
+      additionalProperties: false
 
-    BookUpdateRequest:
+    BookCreateRequest:
       properties:
-        _id:
-          type: string
         title:
           type: string
         description:
@@ -114,3 +113,16 @@ components:
           type: array
           items:
             type: string
+      additionalProperties: false
+
+    BookUpdateRequest:
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        authors:
+          type: array
+          items:
+            type: string
+      additionalProperties: false

@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "es6",
     "moduleResolution": "node",
-    "module": "commonjs",
     "declaration": true,
+    "esModuleInterop": false,
     "importHelpers": true,
     "sourceMap": false,
     "listFiles": false,
@@ -12,6 +12,7 @@
     "pretty": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "lib" : [
       "es2017", "dom"
     ],

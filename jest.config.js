@@ -1,5 +1,6 @@
 module.exports = {
   bail: true,
+  testEnvironment: 'node',
   globals: {
     "ts-jest": {
       tsconfig: "./tsconfig.jest.json",

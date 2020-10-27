@@ -8,18 +8,19 @@
   "repository": "https://github.com/Trungi/books",
   "license": "MIT",
   "scripts": {
-    "api:build": "tsc -p tsconfig.api.json && cp src/api.yaml dist/api.yaml",
-    "api:start": "node dist/api.js",
-    "api:start:dev": "ts-node src/api.ts",
-    "build": "npm run api:build",
-    "dev": "run-p mongod:start api:start:dev",
+    "server:build": "tsc -p tsconfig.server.json && cp src/api.yaml dist/api.yaml",
+    "server:start": "node dist/server.js",
+    "server:start:dev": "ts-node-dev src/server.ts",
+    "build": "npm run server:build",
+    "dev": "run-p mongod:start server:start:dev",
     "fix:lint": "eslint src --ext .ts --fix",
     "mongod:start": "ts-node -e \"require('./src/scripts/start-mongod.ts').startMongod()\"",
     "postinstall": "",
-    "start": "npm run api:start",
-    "test": "jest"
+    "start": "npm run server:start",
+    "test": "jest --detectOpenHandles"
   },
   "dependencies": {
+    "@types/supertest": "^2.0.10",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-openapi-validator": "^4.3.3",
@@ -28,9 +29,10 @@
     "jest": "^26.6.1",
     "mongodb": "^3.3.10",
     "mongodb-memory-server": "^6.9.2",
+    "mongoose": "^5.10.11",
+    "supertest": "^5.0.0",
     "swagger-ui-express": "^4.1.4",
     "ts-jest": "^26.4.2",
-    "ts-node-dev": "^1.0.0",
     "tslib": "^2.0.3",
     "typescript-rest": "^3.0.2",
     "yamljs": "^0.3.0"
@@ -46,6 +48,7 @@
     "eslint": "^7.8.0",
     "npm-run-all": "^4.1.5",
     "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0",
     "typescript": "^4.0.2"
   },
   "engines": {

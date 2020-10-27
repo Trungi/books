@@ -33,7 +33,6 @@ export class MongoService {
         return Promise.reject(err);
       }
     } else {
-      console.debug(`MongoDB already connected ...`);
       return this.mongo;
     }
   }
