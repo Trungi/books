@@ -1,12 +1,14 @@
 # Books API
 
+Live version: http://trungi-books.herokuapp.com/docs
+
 Used tools:
   - node, npm, Typescript
   - Express.js - common and easy to use server for node
   - MongoDB - easy to setup locally and run in cloud
   - OpenApi - for API request/response validation
   - Swagger-ui - since I used openAPI for validation, it's easier to use than postman ;)
-  - Jest for testing
+  - Jest + supertest for testing
   - Github Actions - automatically runs build and test for CI
   - Heroku + Mongodb atlas for CD
   
