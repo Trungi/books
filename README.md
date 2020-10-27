@@ -9,8 +9,8 @@ Used tools:
   - OpenApi - for API request/response validation
   - Swagger-ui - since I used openAPI for validation, it's easier to use than postman ;)
   - Jest + supertest for testing
-  - Github Actions - automatically runs build and test for CI
-  - Heroku + Mongodb atlas for CD
+  - Github Actions - automatically runs build and test
+  - Heroku + Mongodb atlas for live version
   
 ## CI/CD
 - All tests are automatically run using Github Actions
